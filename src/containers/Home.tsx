@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions/users';
 import Strings from '../constants/strings';
 import { User } from '../types';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Test } from '../components/test';
 
+const myIcon = <Icon name="ios-home" size={25} color="#ccc" />;
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -19,13 +17,18 @@ const instructions = Platform.select({
 export interface Props {
   fetchUser: typeof fetchUser;
   user: User;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  // navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
 export class Home extends Component<Props> {
   componentDidMount() {
     this.props.fetchUser('1');
   }
+
+  static navigationOptions = {
+    tabBarLabel: 'Home',
+    tabBarIcon: myIcon,
+  };
 
   render() {
     return (
@@ -35,6 +38,7 @@ export class Home extends Component<Props> {
         </Text>
         <Text style={styles.instructions}>To get started, edit Home.tsx</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <Test />
       </View>
     );
   }
@@ -51,7 +55,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Home);
+)(Test);
 
 const styles = StyleSheet.create({
   container: {

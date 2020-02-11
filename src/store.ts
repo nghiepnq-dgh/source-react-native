@@ -3,6 +3,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import appReducer from './reducers/app';
+import homeReducer from './modules/home/home.reducers'
 import usersReducer from './reducers/users';
 import sagas from './sagas';
 
@@ -23,9 +24,15 @@ const userPersistConfig = {
   key: 'user',
 };
 
+const homePersistConfig = {
+  storage: AsyncStorage,
+  key: 'home',
+};
+
 export const reducers = {
   app: persistReducer(appPersistConfig, appReducer),
   users: persistReducer(userPersistConfig, usersReducer),
+  home: persistReducer(homePersistConfig, homeReducer)
 };
 
 export const rootReducer = combineReducers(reducers);

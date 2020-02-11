@@ -20,7 +20,12 @@ export const USER = createActionTypes('USER', [
   'FETCH_FAILURE',
 ]);
 
+export const HOME = createActionTypes('HOME', [
+  'GET_DATA_USER'
+])
+
 export default {
   app: APP,
   user: USER,
+  home: HOME
 };
