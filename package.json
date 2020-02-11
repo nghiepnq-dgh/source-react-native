@@ -22,12 +22,6 @@
     "icon": "npx app-icon generate -i publishing/icon.png",
     "setup": "./bin/install.sh $1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint",
-      "pre-push": "yarn codecov"
-    }
-  },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
     "@react-navigation/bottom-tabs": "^5.0.0",
